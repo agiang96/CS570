@@ -1,0 +1,11 @@
+I adapted getword.c from Foster's inout2.c file, and some of the code was 
+adapted from Dr. John Carroll's Course Reader notes. I also found a source
+where I drew some ideas from: 
+    https://github.com/connorguy/SDSU_CS_570_CARROLL/tree/master/Two
+Otherwise I wrote this code myself. 
+
+For the input echo >&, 
+
+I believe this program does not work perfectly under all conditions. Piping has 
+some problems and the 'p2: ' prompt behavior does not follow the example outputs
+of the autograder and I'm not sure why.

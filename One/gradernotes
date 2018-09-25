@@ -1,0 +1,11 @@
+I adapted this program from Foster's inout2.c file,
+otherwise I wrote this code myself. 
+
+I believe everything works perfectly under all conditions.  
+
+I believe you should include the necessary requirements 
+inside the program0.txt file, such as the documentation 
+requirement to include the CS570 or Carroll. This is only
+explicitly stated in the autograder, but should also be
+stated in the program0.txt requirements. 
+

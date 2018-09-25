@@ -1,0 +1,33 @@
+I drew ideas from Dr. John Carroll's Course Reader notes and from an online
+sources: https://calvinkam.github.io/csci3150-Fall17-lab-synchronization/too-much-milk-use-semaphore.html
+Otherwise, I wrote this code myself. 
+
+I believe this program works perfectly under all conditions.
+
+I achieved successful coordination by using Dr. Carroll's semex.c example as 
+a template because I wanted to use the countfile behavior discussed in class.
+Since each robot would not know about other robots' count variables, having a 
+global countfile accessible to all robots would allow for the coordination 
+needed to print the N's and F in the correct format. To properly execute this
+coordination, I used mutual exclusion so the robots must be able to access the
+same semaphore and file without conflict.
+----- initStudentStuff() -----
+At first I had trouble with only one sem_open() statement, since the robots 
+would always be trying to create a new semaphore, when they should be opening
+an existing one that was opened by the first robot. I solved this with an if
+statement checking if SEM_FAILED had failed to sem_open, which is what happens
+if the file already exists, and then trying sem_open() without the O_EXCL flag.
+Next, I prepared the countfile, which is protected by the semaphore. If the 
+countfile is empty (2nd source), initialized the file by writing a 0 into the 
+file, otherwise count won't be able to increment inside placeWidget(), which 
+then allows printeger() to be used by a robot. Last, I closed the file so other
+robots can write into the file. 
+
+----- placeWidget() -----
+First, a robot enters the critical region so other robots can't change things.
+The behavior is then similar to semex.c with the countfile accessing being
+the same (read count value, increment count, write new count value). I then 
+close the file, since we don't need to access the file anymore. Then print per 
+the behavior described in the requirements. Lastly, the semaphore is cleaned-up
+(unlinking and closing file/semaphore) only after reaching the very end, after
+'F' is printed. 
