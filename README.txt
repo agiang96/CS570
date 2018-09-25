@@ -1,4 +1,4 @@
-Projects from CS570 - Operating Systems class:
+Projects from CS570 - Operating Systems (Spring 2018):
 
 Zero/  - a simple lexical analyzer that stores "words" to an array and special characters return a number.
 
